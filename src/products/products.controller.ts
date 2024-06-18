@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBody , ApiQuery} from '@nestjs/swagger';
+import { Product } from './entities/product.entity';
 
 @ApiTags('Products')
 @Controller('products')
@@ -15,11 +16,12 @@ export class ProductsController {
   }
 
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  @ApiQuery({name :'maxPrice',required: false,})
+  @ApiQuery({name :'minPrice',required: false,})
+  @ApiQuery({name :'product_name',required: false,})
+  async findAll(@Query() query): Promise<Product[]> {
+    return this.productsService.findAll(query);
   }
-
-  @Get('/orders')
 
   @Get(':id')
   findOne(@Param('id') id: string) {
