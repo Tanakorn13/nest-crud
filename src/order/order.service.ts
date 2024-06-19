@@ -23,6 +23,8 @@ export class OrderService {
         this.productRepository.findOneBy({id: productId}),
       ),
     );
+    console.log("product: ", products);
+    
 
     const orderToCreate: DeepPartial<Order> = {
       totalPrice: createOrderDto.totalPrice,
