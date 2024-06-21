@@ -14,6 +14,7 @@ import { Product } from './products/entities/product.entity';
 import { Category } from './category/entities/category.entity';
 import { Order } from './order/entities/order.entity';
 import { CartModule } from './cart/cart.module';
+import { PdfModule } from './pdf/pdf.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { CartModule } from './cart/cart.module';
     CategoryModule,
     OrderModule,
     CartModule,
+    PdfModule,
   ],
   controllers: [AppController],
   providers: [AppService],
